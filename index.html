@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Shiwani 🎂</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html,body{
+    width:100%;height:100%;
+    overflow:hidden;
+    font-family:'Segoe UI', sans-serif;
+    background:linear-gradient(135deg,#2b1055,#7597de);
+    color:#fff;
+  }
+  .page{
+    position:fixed;
+    top:0;left:0;
+    width:100%;height:100%;
+    display:none;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:20px;
+    overflow:hidden;
+  }
+  .page.active{ display:flex; animation:fadeIn 0.8s ease; }
+  @keyframes fadeIn{ from{opacity:0;} to{opacity:1;} }
+
+  /* ---------- PAGE 1 ---------- */
+  #page1{ background:linear-gradient(135deg,#ffafbd,#ffc3a0); }
+  .sticker{
+    font-size:7rem;
+    animation:bob 2s ease-in-out infinite;
+    filter:drop-shadow(0 10px 15px rgba(0,0,0,0.2));
+  }
+  @keyframes bob{
+    0%,100%{transform:translateY(0) rotate(-3deg);}
+    50%{transform:translateY(-15px) rotate(3deg);}
+  }
+  .start-btn{
+    margin-top:30px;
+    padding:14px 34px;
+    font-size:1.2rem;
+    border:none;
+    border-radius:40px;
+    background:#ff4f81;
+    color:#fff;
+    font-weight:700;
+    cursor:pointer;
+    box-shadow:0 8px 20px rgba(255,79,129,0.5);
+    animation:pulse 1.6s infinite;
+  }
+  @keyframes pulse{
+    0%,100%{transform:scale(1);}
+    50%{transform:scale(1.07);}
+  }
+  .p1-title{
+    margin-top:25px;
+    font-size:1.6rem;
+    color:#fff;
+    text-shadow:0 3px 10px rgba(0,0,0,0.25);
+    font-weight:700;
+  }
+
+  /* ---------- PAGE 2 (balloons) ---------- */
+  #page2{ background:linear-gradient(135deg,#a18cd1,#fbc2eb); }
+  .balloon-row{
+    display:flex;
+    gap:40px;
+    flex-wrap:wrap;
+    justify-content:center;
+  }
+  .bal{
+    position:relative;
+    width:90px;
+    height:115px;
+    border-radius:50% 50% 50% 50%/60% 60% 40% 40%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:800;
+    font-size:1.3rem;
+    color:#fff;
+    cursor:default;
+    transition:transform 0.15s;
+  }
+  .bal::after{
+    content:"";
+    position:absolute;
+    bottom:-26px;
+    left:50%;
+    width:2px;
+    height:26px;
+    background:rgba(255,255,255,0.6);
+  }
+  .bal1{ background:#ff6fa5; }
+  .bal2{ background:#ffd166; }
+  .bal3{ background:#6bf2c1; }
+  .bal4{ background:#a86bf2; }
+  .bal.popped{
+    animation:pop-out 0.35s forwards;
+  }
+  @keyframes pop-out{
+    0%{transform:scale(1); opacity:1;}
+    60%{transform:scale(1.4); opacity:0.6;}
+    100%{transform:scale(0); opacity:0;}
+  }
+  .bal-word{
+    opacity:0;
+    font-size:2.2rem;
+    font-weight:800;
+    margin-top:10px;
+    transition:opacity 0.4s;
+    color:#fff;
+    text-shadow:0 4px 10px rgba(0,0,0,0.3);
+  }
+  .bal-word.show{ opacity:1; }
+  .word-row{
+    display:flex;
+    gap:18px;
+    margin-top:20px;
+    font-size:2rem;
+  }
+
+  /* ---------- PAGE 3 (cake) ---------- */
+  #page3{ background:linear-gradient(135deg,#fbd3e9,#bbd2c5); }
+  .cake-wrap{ position:relative; }
+  .cake{ font-size:6rem; }
+  .flame{
+    position:absolute;
+    top:-26px;
+    left:50%;
+    transform:translateX(-50%);
+    font-size:1.6rem;
+    opacity:0;
+    transition:opacity 0.3s;
+  }
+  .flame.lit{ opacity:1; animation:flicker 0.6s infinite alternate; }
+  @keyframes flicker{
+    0%{ transform:translateX(-50%) scale(1) rotate(-3deg); }
+    100%{ transform:translateX(-50%) scale(1.15) rotate(3deg); }
+  }
+  .cake-msg{
+    margin-top:25px;
+    font-size:1.5rem;
+    font-weight:700;
+    color:#5a2a45;
+    opacity:0;
+    transition:opacity 0.6s;
+  }
+  .cake-msg.show{ opacity:1; }
+
+  /* ---------- PAGE 4 (flowers) ---------- */
+  #page4{ background:linear-gradient(135deg,#d4fc79,#96e6a1); color:#2d3a25;}
+  .flower-row{
+    font-size:3.2rem;
+    margin-bottom:20px;
+  }
+  .flower-row span{
+    display:inline-block;
+    animation:sway 2.4s ease-in-out infinite;
+  }
+  .flower-row span:nth-child(2){ animation-delay:0.3s; }
+  .flower-row span:nth-child(3){ animation-delay:0.6s; }
+  .flower-row span:nth-child(4){ animation-delay:0.9s; }
+  .flower-row span:nth-child(5){ animation-delay:1.2s; }
+  @keyframes sway{
+    0%,100%{ transform:rotate(-6deg); }
+    50%{ transform:rotate(6deg); }
+  }
+  .flower-msg{
+    max-width:560px;
+    font-size:1.25rem;
+    line-height:1.7;
+    font-weight:600;
+    background:rgba(255,255,255,0.35);
+    padding:24px;
+    border-radius:18px;
+  }
+
+  /* ---------- PAGE 5 (hug + finale) ---------- */
+  #page5{ background:linear-gradient(135deg,#ffecd2,#fcb69f); color:#5a2a45; position:relative; }
+  .hb-title{
+    font-size:1.9rem;
+    font-weight:800;
+    margin-bottom:20px;
+    text-shadow:0 3px 10px rgba(0,0,0,0.15);
+  }
+  .hug-wrap{
+    font-size:5rem;
+    display:flex;
+    gap:6px;
+    align-items:center;
+  }
+  .hug-wrap span:first-child{ animation:lean-left 1.4s ease-in-out infinite; }
+  .hug-wrap span:last-child{ animation:lean-right 1.4s ease-in-out infinite; }
+  @keyframes lean-left{ 0%,100%{ transform:rotate(-4deg) translateX(0);} 50%{ transform:rotate(2deg) translateX(6px);} }
+  @keyframes lean-right{ 0%,100%{ transform:rotate(4deg) translateX(0);} 50%{ transform:rotate(-2deg) translateX(-6px);} }
+
+  .surprise-btn{
+    margin-top:30px;
+    padding:12px 30px;
+    border:none;
+    border-radius:40px;
+    background:#ff4f81;
+    color:#fff;
+    font-weight:700;
+    font-size:1.05rem;
+    cursor:pointer;
+    box-shadow:0 8px 20px rgba(255,79,129,0.5);
+  }
+
+  /* popup */
+  .popup-overlay{
+    position:fixed;
+    top:0;left:0;
+    width:100%;height:100%;
+    background:rgba(0,0,0,0.55);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    z-index:50;
+  }
+  .popup-overlay.show{ display:flex; }
+  .popup-card{
+    background:#fff;
+    color:#5a2a45;
+    border-radius:20px;
+    padding:36px 30px;
+    max-width:380px;
+    text-align:center;
+    box-shadow:0 20px 50px rgba(0,0,0,0.4);
+    animation:pop-in 0.4s ease;
+  }
+  @keyframes pop-in{
+    0%{ transform:scale(0.6); opacity:0; }
+    100%{ transform:scale(1); opacity:1; }
+  }
+  .popup-card h2{ font-size:1.6rem; margin-bottom:12px; }
+  .popup-card p{ font-size:1.05rem; line-height:1.5; margin-bottom:18px; }
+  .popup-card button{
+    padding:10px 24px;
+    border:none;
+    border-radius:30px;
+    background:#ff4f81;
+    color:#fff;
+    font-weight:700;
+    cursor:pointer;
+  }
+
+  canvas#confetti{
+    position:fixed;
+    top:0;left:0;
+    width:100%;height:100%;
+    pointer-events:none;
+    z-index:40;
+    display:none;
+  }
+  canvas#confetti.show{ display:block; }
+</style>
+</head>
+<body>
+
+<canvas id="confetti"></canvas>
+
+<!-- PAGE 1 -->
+<div class="page active" id="page1">
+  <div class="sticker">🐻💕</div>
+  <div class="p1-title">A little surprise for you, Shiwani...</div>
+  <button class="start-btn" onclick="goToPage(2)">Start the Surprise 🎁</button>
+</div>
+
+<!-- PAGE 2 -->
+<div class="page" id="page2">
+  <h2 style="margin-bottom:30px;font-size:1.4rem;">Pop the balloons... 🎈</h2>
+  <div class="balloon-row" id="balloonRow">
+    <div class="bal bal1" id="b1">🎈</div>
+    <div class="bal bal2" id="b2">🎈</div>
+    <div class="bal bal3" id="b3">🎈</div>
+    <div class="bal bal4" id="b4">🎈</div>
+  </div>
+  <div class="word-row">
+    <span class="bal-word" id="w1">You</span>
+    <span class="bal-word" id="w2">Are</span>
+    <span class="bal-word" id="w3">My</span>
+    <span class="bal-word" id="w4">Cutie</span>
+  </div>
+</div>
+
+<!-- PAGE 3 -->
+<div class="page" id="page3">
+  <div class="cake-wrap">
+    <div class="flame" id="flame">🔥</div>
+    <div class="cake">🎂</div>
+  </div>
+  <div class="cake-msg" id="cakeMsg">Make a wish, Shiwani! 🥳🎉</div>
+</div>
+
+<!-- PAGE 4 -->
+<div class="page" id="page4">
+  <div class="flower-row">
+    <span>🌸</span><span>🌷</span><span>🌼</span><span>🌺</span><span>🌹</span>
+  </div>
+  <div class="flower-msg">
+    To my cutie sister Shiwani,<br><br>
+    Tum jaisi pyaari behan milna meri zindagi ki sabse badi khushi hai.
+    Hamesha khush raho, hasti raho, aur apni saari khwaishon ko poora karo.
+    Tumhari muskaan hi sabse badi dua hai mere liye. 🌷💖
+  </div>
+</div>
+
+<!-- PAGE 5 -->
+<div class="page" id="page5">
+  <div class="hb-title">Happy Birthday Meri Jaan Didi 🎉</div>
+  <div class="hug-wrap">
+    <span>🧸</span><span>🐻</span>
+  </div>
+  <button class="surprise-btn" id="surpriseBtn" onclick="showPopup()" style="display:none;">Tap for a Surprise 🎁</button>
+</div>
+
+<!-- POPUP -->
+<div class="popup-overlay" id="popupOverlay">
+  <div class="popup-card">
+    <h2>🎊 Surprise! 🎊</h2>
+    <p>Happy Birthday Shiwani, Meri Pyaari Behan!<br>May this year bring you endless smiles, love and all the happiness you deserve. I love you so much! 💖🎂🎈</p>
+    <button onclick="closePopup()">Close 💕</button>
+  </div>
+</div>
+
+<script>
+function goToPage(num){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('page'+num).classList.add('active');
+
+  if(num === 2) runBalloons();
+  if(num === 3) runCake();
+  if(num === 4) setTimeout(()=>goToPage(5), 4500);
+  if(num === 5) runFinale();
+}
+
+/* ---------- PAGE 2: balloons popping sequentially ---------- */
+function runBalloons(){
+  const sequence = [1,2,3,4];
+  let i = 0;
+  function popNext(){
+    if(i >= sequence.length){
+      setTimeout(()=>goToPage(3), 2000);
+      return;
+    }
+    const n = sequence[i];
+    const bal = document.getElementById('b'+n);
+    const word = document.getElementById('w'+n);
+    bal.classList.add('popped');
+    setTimeout(()=>{ word.classList.add('show'); }, 200);
+    i++;
+    setTimeout(popNext, 1300);
+  }
+  setTimeout(popNext, 800);
+}
+
+/* ---------- PAGE 3: cake candle lighting ---------- */
+function runCake(){
+  const flame = document.getElementById('flame');
+  const msg = document.getElementById('cakeMsg');
+  flame.classList.remove('lit');
+  msg.classList.remove('show');
+  setTimeout(()=>{
+    flame.classList.add('lit');
+    launchConfettiBurst();
+    msg.classList.add('show');
+  }, 1000);
+  setTimeout(()=>{ goToPage(4); }, 4500);
+}
+
+/* ---------- PAGE 5: finale ---------- */
+function runFinale(){
+  setTimeout(()=>{
+    document.getElementById('surpriseBtn').style.display = 'inline-block';
+  }, 1500);
+}
+
+function showPopup(){
+  document.getElementById('popupOverlay').classList.add('show');
+  launchConfettiBurst();
+}
+function closePopup(){
+  document.getElementById('popupOverlay').classList.remove('show');
+}
+
+/* ---------- Confetti ---------- */
+const canvas = document.getElementById('confetti');
+const ctx = canvas.getContext('2d');
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+window.addEventListener('resize', ()=>{
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+});
+const confettiColors = ['#ff6fa5','#a86bf2','#ffd166','#6bf2c1','#ff9f6b','#ffffff'];
+let particles = [];
+function spawnParticles(count){
+  for(let i=0;i<count;i++){
+    particles.push({
+      x: Math.random()*canvas.width,
+      y: -20 - Math.random()*100,
+      r: 4 + Math.random()*6,
+      color: confettiColors[Math.floor(Math.random()*confettiColors.length)],
+      speed: 2 + Math.random()*3,
+      angle: Math.random()*Math.PI*2,
+      spin: (Math.random()-0.5)*0.25,
+      life: 0
+    });
+  }
+}
+function launchConfettiBurst(){
+  canvas.classList.add('show');
+  spawnParticles(140);
+  setTimeout(()=>{
+    if(particles.length === 0) canvas.classList.remove('show');
+  }, 4000);
+}
+function animateConfetti(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  particles.forEach(p=>{
+    ctx.save();
+    ctx.translate(p.x,p.y);
+    ctx.rotate(p.angle);
+    ctx.fillStyle = p.color;
+    ctx.fillRect(-p.r/2,-p.r/2,p.r,p.r*0.6);
+    ctx.restore();
+    p.y += p.speed;
+    p.angle += p.spin;
+    p.life++;
+  });
+  particles = particles.filter(p=>p.y < canvas.height + 20 && p.life < 400);
+  if(particles.length === 0) canvas.classList.remove('show');
+  requestAnimationFrame(animateConfetti);
+}
+animateConfetti();
+</script>
+
+</body>
+</html>
